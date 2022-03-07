@@ -76,7 +76,7 @@ function verificarVictoria() {
             alert("La partida termino en empate");
         }
     }
-}  
+}; 
 
 
 
@@ -105,7 +105,60 @@ const reload = () => {
    
     turno = false;
    victoria = false;
+    contador = 0;
+}
 
-};
+function nuevapartida(event) {
+    const { id } = event.target;
+    const div = document.getElementById(id);
+    const t = turno;
+    if (t) {
+        document.getElementById("x").innerText = "Turno jugador X";
+        document.getElementById("x").className = "activo";
+        document.getElementById("o").innerText = "Jugador O";
+        document.getElementById("o").className = "noActivo";
+    } else {
+        document.getElementById("o").innerText = "Turno jugador O";
+        document.getElementById("o").className = "activo";
+        document.getElementById("x").innerText = "Jugador X";
+        document.getElementById("x").className = "noActivo";
+    }
+    if (div.innerText == "" && gan == false) {
+        div.innerText = turno ? "O" : "X";
+        cont++;
+        ganador();
+        turno = !turno;
+
+
+    }
+}
+
+
+window.onload = () => {
+    turnoJugador()
+}
+
+const turnoJugador = () => {
+    const Jugador1 = document.getElementById("Jugador1");
+    const Jugador2 = document.getElementById("Jugador2");
+
+if (turno === false && victoria === false) {
+    Jugador1.style.border = "7px solid #000c";
+    Jugador1.style.boxShadow = "rgb:238, 54, 133, 0.6";
+    Jugador2.style.border = "7px";
+    Jugador2.style.boxShadow = "rgb:238, 54, 133, 0.6";
+}else if (turno === true && victoria === false) {
+    Jugador1.style.border = "0px solid #00c";
+    Jugador1.style.boxShadow = "0 0 00px #00c";
+    Jugador2.style.border = "0px";
+    Jugador2.style.boxShadow = "0 0 0px #00c";
+}else {
+    Jugador1.style.border = "0px";
+    Jugador1.style.boxShadow = "0 0 0px #00c";
+    Jugador2.style.border = "0px";
+    Jugador2.style.boxShadow = "0 0 0px #00c"
+}
+}
+
 
 
